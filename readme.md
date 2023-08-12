@@ -46,4 +46,28 @@ bool isMatrixSymmetric(vector<vector<int>> matrix){
     }
     return ans;
 }
+```
 
+## 3. Inplace rotate matrix 90 degree (anti clockwise)
+
+```cpp
+#include <bits/stdc++.h> 
+void inplaceRotate(vector<vector<int>> &inputArray)
+{
+    //First find transpose by moving diagonally
+    int n = inputArray.size();
+    int m = inputArray[0].size();
+    for(int i=0;i<n;i++){
+        for(int j=i;j<m;j++){
+            swap(inputArray[j][i],inputArray[i][j]);
+        }
+    }
+    // Swap the elements
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<m;j++){
+            swap(inputArray[i][j],inputArray[n-1][j]);
+        }
+        n--;
+    }
+}
+```
