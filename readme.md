@@ -71,3 +71,74 @@ void inplaceRotate(vector<vector<int>> &inputArray)
     }
 }
 ```
+## 4. Spiral Matrix
+
+```cpp
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int>res;
+        if(matrix.size()==0)return res;
+        int rowStart = 0;
+        int rowEnd = matrix.size()-1;
+        int colStart = 0;
+        int colEnd = matrix[0].size()-1;
+        while(rowStart<=rowEnd&&colStart<=colEnd){
+            //Move Right
+            for(int i=colStart;i<=colEnd;i++){
+                res.push_back(matrix[rowStart][i]);
+            }
+            rowStart++;
+            // Move Down
+            for(int i=rowStart;i<=rowEnd;i++){
+                res.push_back(matrix[i][colEnd]);
+            }
+            colEnd--;
+            // Move left
+            if(rowStart<=rowEnd){
+                for(int i=colEnd;i>=colStart;i--){
+                    res.push_back(matrix[rowEnd][i]);
+                }
+            }
+            rowEnd--;
+             // Move up
+            if(colStart<=colEnd){
+                for(int i=rowEnd;i>=rowStart;i--){
+                    res.push_back(matrix[i][colStart]);
+                }
+            }
+            colStart++;      
+        }
+        return res;
+    }
+};
+```
+
+## 5. Set Matrix Zeros
+
+```cpp
+#include <bits/stdc++.h>
+
+void setZeros(vector<vector<int>> &matrix)
+{
+
+	int n = matrix.size();
+	int m = matrix[0].size();
+	vector<int>col(m,0);
+	vector<int>row(n,0);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(matrix[i][j]==0){
+				col[j] = -1;
+				row[i] = -1;
+			}
+		}
+	}	
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(col[j]==-1||row[i]==-1)matrix[i][j] = 0;
+		}
+	}
+
+}
+```
